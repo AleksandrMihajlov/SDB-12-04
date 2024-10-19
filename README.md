@@ -36,10 +36,10 @@ where film.`length` > (select AVG(`length`) from sakila.film)
 Получите информацию, за какой месяц была получена наибольшая сумма платежей, и добавьте информацию по количеству аренд за этот месяц.
   
 ```sql
-select month(payment_date), sum(amount), count(payment_id)
+select date_format (payment_date, '%M %Y'), sum(amount)
 from sakila.payment
-group by month(payment_date)
+group by date_format(payment_date, '%M %Y')
 ORDER by sum(amount) desc
 limit 1
 ```  
-![alt text](https://github.com/AleksandrMihajlov/SDB-12-04/blob/main/3.png)
+![alt text](https://github.com/AleksandrMihajlov/SDB-12-04/blob/main/3.1.png)
